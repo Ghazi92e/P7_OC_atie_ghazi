@@ -1,0 +1,26 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB3wGZqVllOeyAlTzVarXmnlAOT5Kk2Eg&callback=initMap&libraries=&v=weekly"
+    >
+    </script>
+
+    <title>Todo App</title>
+</head>
+    <h1> P7 Papy Bot </h1>
+<body>
+    {% block main %}
+    {% endblock main %}
+    {% block mapstest %}
+    {% endblock mapstest %}
+    {% block javascript %}
+    {% endblock javascript %}
+    <p id="botresponse"></p>
+</body>
+
+</html>

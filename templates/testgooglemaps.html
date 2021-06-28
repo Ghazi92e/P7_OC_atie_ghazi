@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block mapstest %}
+{% include './partials/_form.html' %}
+    <p> slt test dd </p>
+     {% if filtertext %}
+        {% for task in filtertext %}
+            <p>{{ filtertext }}</p>
+        {% endfor %}
+    {% endif %}
+    <button onclick="getLocation()">Try It</button>
+    <p id="te"></p>
+    <div id="floating-panel">
+      <input id="address" type="text" value="Sydney, NSW" />
+      <input id="submit" type="button" value="Geocode" />
+    </div>
+    <div id="mapgo"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+<script>
+(function(){
+	let mapElement = 'mapgo';
+	let address = 'New york';
+	geocoder = new google.maps.Geocoder();
+   geocoder.geocode({ 'address': address }, function (results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      var mapOptions = {
+          zoom: 17,
+          center: results[0].geometry.location,
+          disableDefaultUI: true
+      };
+      var map = new google.maps.Map(document.getElementById(mapElement), mapOptions);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+    	alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+})();
+
+</script>
+
+{% endblock mapstest %}
