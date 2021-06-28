@@ -12,7 +12,7 @@ def filterdata(data_user):
 
 def geocoddde(address):
     data = []
-    GOOGLE_MAPS_API_URL = f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key=AIzaSyAB3wGZqVllOeyAlTzVarXmnlAOT5Kk2Eg'
+    GOOGLE_MAPS_API_URL = f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key='
 
     req = requests.get(GOOGLE_MAPS_API_URL)
     d = req.json()
