@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 {% block main %}
-<main>
+<main class="msger-chat">
     {% include './partials/_form.html' %}
 
     <div id="tasks">
         <p id="insertdata"></p>
-        <div id="">
-            <p id="output"></p>
-        </div>
+        <p id="botresponse"></p>
+        <p id="output"></p>
     </div>
     <p>{{ data }}</p>
     <p id="demo"></p>
@@ -18,10 +17,16 @@
 
 {% block javascript %}
 <script>
-
 function botdata() {
-  var h = document.getElementById("insertdata");
-  h.insertAdjacentText("afterend", "ok");
+    var h = document.getElementById("address").value;
+    var data = document.getElementById("insertdata");
+    data.insertAdjacentHTML("beforebegin", h);
+    setTimeout(bot, 3000);
+};
+
+function bot() {
+    var p = document.getElementById("botresponse");
+    p.insertAdjacentHTML("afterend", "<p> Salut c papy bot</p>");
 }
 
 
@@ -46,11 +51,12 @@ $(document).ready(function() {
             })
         .done(function(data) {
           $('#output').text(data.output).show();
-            q = JSON.stringify(data);
-            console.log(q);
-          (function (){
+            dataApi = JSON.stringify(data);
+            console.log(dataApi);
+
+          (function (geocode){
             let mapElement = 'map';
-            let address = q;
+            let address = dataApi;
             geocoder = new google.maps.Geocoder();
            geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
@@ -69,6 +75,7 @@ $(document).ready(function() {
             }
           });
         })();
+
       });
       event.preventDefault();
       });
