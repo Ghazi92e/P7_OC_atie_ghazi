@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% block main %}
-<main class="msger-chat">
+<main>
     {% include './partials/_form.html' %}
 
     <div id="tasks">
-        <p id="insertdata"></p>
-        <p id="botresponse"></p>
-        <p id="output"></p>
+        <p id="dialog"></p>
     </div>
     <p>{{ data }}</p>
     <p id="demo"></p>
@@ -17,17 +15,17 @@
 
 {% block javascript %}
 <script>
-function botdata() {
+function getdataform() {
     var h = document.getElementById("address").value;
-    var data = document.getElementById("insertdata");
-    data.insertAdjacentHTML("beforebegin", h);
-    setTimeout(bot, 3000);
+    var data = document.getElementById("dialog");
+    data.insertAdjacentHTML("beforeend", "<br>" + h);
 };
 
-function bot() {
-    var p = document.getElementById("botresponse");
-    p.insertAdjacentHTML("afterend", "<p> Salut c papy bot</p>");
+function bot(data) {
+    var p = document.getElementById("dialog");
+    p.insertAdjacentHTML("beforeend", "<br>" + "salut c' est papy bot alors ladresse est:" + data);
 }
+
 
 
 function loadDoc(event) {
@@ -39,6 +37,7 @@ function loadDoc(event) {
   xhttp.open("POST", "");
   xhttp.send();
 }
+
 
 $(document).ready(function() {
      $('form').on('submit', function(event) {
@@ -53,6 +52,9 @@ $(document).ready(function() {
           $('#output').text(data.output).show();
             dataApi = JSON.stringify(data);
             console.log(dataApi);
+            setTimeout(function() {
+                bot(data.output);
+            }, 1000);
 
           (function (geocode){
             let mapElement = 'map';
