@@ -6,7 +6,7 @@
     <div id="tasks">
         <p id="dialog"></p>
     </div>
-    <p>{{ data }}</p>
+    <p id="wikidata"></p>
     <p id="demo"></p>
     <div id="map"></div>
     <p id="geocode"></p>
@@ -23,21 +23,19 @@ function getdataform() {
 
 function bot(data) {
     var p = document.getElementById("dialog");
-    p.insertAdjacentHTML("beforeend", "<br>" + "salut c' est papy bot alors ladresse est:" + data);
+    p.insertAdjacentHTML("beforeend", "<br>" + "Bien sûr mon poussin ! La voici: " + data);
+    loadDoc()
 }
 
-
-
-function loadDoc(event) {
-    event.preventDefault();
+function loadDoc() {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function() {
-    document.getElementById("map").innerHTML = this.responseText;
+    var data = document.getElementById("dialog");
+    data.insertAdjacentHTML("beforeend", "<br>" + this.responseText);
   }
-  xhttp.open("POST", "");
+  xhttp.open("GET", "/wikimedia", true);
   xhttp.send();
 }
-
 
 $(document).ready(function() {
      $('form').on('submit', function(event) {
@@ -50,12 +48,14 @@ $(document).ready(function() {
             })
         .done(function(data) {
           $('#output').text(data.output).show();
-            dataApi = JSON.stringify(data);
+            dataApi = JSON.stringify(data.output);
             console.log(dataApi);
             setTimeout(function() {
                 bot(data.output);
             }, 1000);
-
+              $('#wikioutput').text(data.wikidata).show();
+                wikiapi = JSON.stringify(data.wikidata);
+                console.log(wikiapi);
           (function (geocode){
             let mapElement = 'map';
             let address = dataApi;
