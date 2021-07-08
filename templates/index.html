@@ -1,15 +1,22 @@
 {% extends 'base.html' %}
 {% block main %}
 <main>
-    {% include './partials/_form.html' %}
+    <div class="container">
+        <div class="box-center">
+            <div id="box-main">
+                <header class="text-center">
+                    <h1> P7 Papy Bot </h1>
+                    <img id="okimg" src="{{ url_for('static', filename='bot-logo-100.png') }}" />
+                    <p>Salut je suis Papy Bot pose moi une question et j'irais la chercher au fin fond de mes archives</p>
+                </header>
 
-    <div id="tasks">
-        <p id="dialog"></p>
+                {% include './partials/_form.html' %}
+
+                <p id="dialog"></p>
+                <div id="map"></div>
+            </div>
+        </div>
     </div>
-    <p id="wikidata"></p>
-    <p id="demo"></p>
-    <div id="map"></div>
-    <p id="geocode"></p>
 </main>
 {% endblock main %}
 
@@ -18,13 +25,32 @@
 function getdataform() {
     var h = document.getElementById("address").value;
     var data = document.getElementById("dialog");
-    data.insertAdjacentHTML("beforeend", "<br>" + h);
+    data.insertAdjacentHTML("beforeend", "<br>" + "<img src={{ url_for('static', filename='person-logo-50.png')}} />" + h);
 };
 
 function bot(data) {
     var p = document.getElementById("dialog");
-    p.insertAdjacentHTML("beforeend", "<br>" + "Bien sûr mon poussin ! La voici: " + data);
-    loadDoc()
+    p.insertAdjacentHTML("beforeend", "<br>" + "<img src={{ url_for('static', filename='bot-logo-50.png')}} />" + "Bien sûr mon poussin ! La voici: " + data);
+}
+
+function wikiresponse(data) {
+    var p = document.getElementById("dialog");
+    p.insertAdjacentHTML("beforeend", "<br>" + "<img src={{ url_for('static', filename='bot-logo-50.png')}} />" + data);
+}
+
+const rotate = (image, degrees) => {
+  image.style.transform = `rotate(${+degrees}deg)`;
+}
+const img = document.getElementById('okimg');
+
+const oneLoop = () => {
+  setTimeout(() => rotate(img, 90), 1000);
+  setTimeout(() => rotate(img, 180), 2000);
+  setTimeout(() => rotate(img, 360), 3000);
+}
+
+function turnbot() {
+    oneLoop();
 }
 
 function loadDoc() {
@@ -39,6 +65,7 @@ function loadDoc() {
 
 $(document).ready(function() {
      $('form').on('submit', function(event) {
+        turnbot();
        $.ajax({
           data : {
              address : $('#address').val(),
@@ -55,6 +82,9 @@ $(document).ready(function() {
             }, 1000);
               $('#wikioutput').text(data.wikidata).show();
                 wikiapi = JSON.stringify(data.wikidata);
+                setTimeout(function() {
+                    wikiresponse(data.wikidata);
+            }, 2000);
                 console.log(wikiapi);
           (function (geocode){
             let mapElement = 'map';
