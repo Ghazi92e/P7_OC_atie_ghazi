@@ -54,4 +54,5 @@ STOP_WORDS = ["a", "abord", "absolument", "afin", "ah", "ai", "aie", "ailleurs",
               "uniques", "uns", "v", "va", "vais", "vas", "vers", "via", "vif", "vifs", "vingt", "vivat", "vive",
               "vives", "vlan", "voici", "voilà", "vont", "vos", "votre", "vous", "vous-mêmes", "vu", "vé", "vôtre",
               "vôtres", "w", "x", "y", "z", "zut", "à", "â", "ça", "ès", "étaient", "étais", "était", "étant", "été",
-              "être", "ô", "adresse", "l'adresse"]
+              "être", "ô", "adresse", "l'adresse", "Salut", "GrandPy", "Est-ce", "connais", "d", "adresse", "Quelle",
+              "?", "!"]

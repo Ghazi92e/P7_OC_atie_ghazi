@@ -6,7 +6,7 @@
             <div id="box-main">
                 <header class="text-center">
                     <h1> P7 Papy Bot </h1>
-                    <img id="okimg" src="{{ url_for('static', filename='bot-logo-100.png') }}" />
+                    <img id="img-bot" src="{{ url_for('static', filename='bot-logo-100.png') }}" />
                     <p>Salut je suis Papy Bot pose moi une question et j'irais la chercher au fin fond de mes archives</p>
                 </header>
 
@@ -41,7 +41,7 @@ function wikiresponse(data) {
 const rotate = (image, degrees) => {
   image.style.transform = `rotate(${+degrees}deg)`;
 }
-const img = document.getElementById('okimg');
+const img = document.getElementById('img-bot');
 
 const oneLoop = () => {
   setTimeout(() => rotate(img, 90), 1000);
@@ -49,23 +49,9 @@ const oneLoop = () => {
   setTimeout(() => rotate(img, 360), 3000);
 }
 
-function turnbot() {
-    oneLoop();
-}
-
-function loadDoc() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.onload = function() {
-    var data = document.getElementById("dialog");
-    data.insertAdjacentHTML("beforeend", "<br>" + this.responseText);
-  }
-  xhttp.open("GET", "/wikimedia", true);
-  xhttp.send();
-}
-
 $(document).ready(function() {
      $('form').on('submit', function(event) {
-        turnbot();
+        oneLoop();
        $.ajax({
           data : {
              address : $('#address').val(),
@@ -115,37 +101,3 @@ $(document).ready(function() {
 
 </script>
 {% endblock javascript %}
-
-function geocodeAddress(geocoder, resultsMap) {
-  const address = document.getElementById("address").value;
-  geocoder.geocode({ address: address }, (results, status) => {
-    if (status === "OK") {
-      resultsMap.setCenter(results[0].geometry.location);
-      new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location,
-      });
-    } else {
-      alert("Geocode was not successful for the following reason: " + status);
-    }
-  });
-}
-https://maps.googleapis.com/maps/api/staticmap?center=
-  "+48.90624,2.2478848+"&zoom=14&size=400x300&sensor=false&key=AIzaSyAB3wGZqVllOeyAlTzVarXmnlAOT5Kk2Eg
-
-function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 8,
-    center: { lat: 48.8534, lng: 2.3488 },
-  });
-  const geocoder = new google.maps.Geocoder();
-  document.getElementById("submit").addEventListener("click", () => {
-    geocodeAddress(geocoder, map);
-  });
-}
-
-<!--<a href="{{ url_for('update', id=task.id) }}">Update</a> -->
-<!--<a href="{{ url_for('delete', id=task.id) }}">Delete</a> -->
-
-var geocode = '{{ data[0] }}';
-document.getElementById("geocode").innerHTML = geocode;
