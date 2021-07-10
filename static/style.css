@@ -22,19 +22,13 @@ form {
 }
 
 input[type=text] {
+    font-family: serif;
     box-sizing: border-box;
     font-size: 16px;
 }
 
-
-a {
-    color: #1E1E2D;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-}
-
 p {
+    font-family: serif;
     font-size: 17px;
 }
 
@@ -50,7 +44,7 @@ p {
 }
 
 .box-center {
-    padding-top: 100px;
+    padding-top: 80px;
 }
 
 #dialog {
