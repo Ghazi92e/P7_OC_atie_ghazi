@@ -34,5 +34,16 @@ function wikiresponse(data) {
     var p = document.getElementById("dialog");
     p.insertAdjacentHTML("beforeend", "<br>" + "<img src={{ url_for('static', filename='bot-logo-50.png')}} />" + data);
 };
+
+const rotate = (image, degrees) => {
+  image.style.transform = `rotate(${+degrees}deg)`;
+}
+const img = document.getElementById('img-bot');
+
+const oneLoop = () => {
+  setTimeout(() => rotate(img, 90), 1000);
+  setTimeout(() => rotate(img, 180), 2000);
+  setTimeout(() => rotate(img, 360), 3000);
+}
 </script>
 {% endblock main %}

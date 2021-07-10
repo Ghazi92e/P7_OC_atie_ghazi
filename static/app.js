@@ -1,15 +1,3 @@
-
-const rotate = (image, degrees) => {
-  image.style.transform = `rotate(${+degrees}deg)`;
-}
-const img = document.getElementById('img-bot');
-
-const oneLoop = () => {
-  setTimeout(() => rotate(img, 90), 1000);
-  setTimeout(() => rotate(img, 180), 2000);
-  setTimeout(() => rotate(img, 360), 3000);
-}
-
 $(document).ready(function() {
      $('form').on('submit', function(event) {
         oneLoop();
