@@ -32,7 +32,7 @@ function bot(data) {
 
 function wikiresponse(data) {
     var p = document.getElementById("dialog");
-    p.insertAdjacentHTML("beforeend", "<br>" + "<img src={{ url_for('static', filename='bot-logo-50.png')}} />" + data);
+    p.insertAdjacentHTML("beforeend", "<br>" + "<img src={{ url_for('static', filename='bot-logo-50.png')}} />"+ "Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? " + data);
 };
 
 const rotate = (image, degrees) => {
