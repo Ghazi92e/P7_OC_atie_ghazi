@@ -1,5 +1,8 @@
 import requests
 import app
+from api.api import Api
+
+api = Api()
 
 
 class MockResponse:
@@ -35,11 +38,11 @@ def test_api(monkeypatch):
         return MockResponse()
 
     monkeypatch.setattr(requests, "get", mock_get)
-    res = app.wikigeocode("https://fakeurl")
+    res = api.wikigeocode("https://fakeurl")
     assert res == "Quai de la Charente"
 
     monkeypatch.setattr(requests, "get", mock_get)
-    res = app.geocode("https://maps.googleapis.com/maps")
+    res = api.geocode("https://maps.googleapis.com/maps")
     assert res == "10 Quai de la Charente, 75019 Paris, France"
 
 
