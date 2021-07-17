@@ -74,3 +74,4 @@ def ajaxtest():
     for infodata in datawiki:
         titleinfo = infodata['query']['pages'][wikipageid]['extract']
         return jsonify({'output': address, 'wikidata': titleinfo})
+
