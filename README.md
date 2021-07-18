@@ -20,3 +20,38 @@ The user opens their browser and enters the URL you provided. It arrives in fron
 Then a new message appears: "Bien sûr mon poussin ! La voici : 7 cité Paradis, 75010 Paris." Below, a Google Maps map also appears with a marker indicating the requested address.
 
 GrandPy sends a new message: "Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? La cité Paradis est une voie publique située dans le 10e arrondissement de Paris. Elle est en forme de té, une branche débouche au 43 rue de Paradis, la deuxième au 57 rue d'Hauteville et la troisième en impasse. [En savoir plus sur Wikipedia]"
+
+### Technologies
+* [Python](https://www.python.org/downloads/): Version 3.8
+* [Flask](https://flask.palletsprojects.com/en/2.0.x/): Version 2.0
+
+### Installation
+1. Install Flask
+2. Clone the repository
+```
+git clone https://github.com/Ghazi92e/P7_OC_atie_ghazi.git
+```
+3. Create a virtual env
+```
+python -m venv env
+```
+4. Activate the virtual env
+```
+source env/bin/activate
+```
+5. Install packages from requirements.txt
+```
+pip install -r requirements.txt
+```
+6. Create a .env file
+```
+touch .env
+```
+7. Add API Google Maps Key in .env file
+```
+API_GOOGLEMAPS_KEY=secret_key
+```
+8. Run the application
+```
+flask run
+```
