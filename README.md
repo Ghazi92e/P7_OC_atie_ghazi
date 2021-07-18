@@ -4,12 +4,12 @@ Create a robot that would respond to you like your grandfather! If you ask him f
 it to you, of course, but with a long and very interesting story.
 
 ### Specifications
-####Features
+#### Features
 - Interactions in AJAX: the user sends his question by pressing enter and the answer is displayed directly on the screen, without reloading the page.
 - You will use the Google Maps API and the Media Wiki API.
 - Nothing is saved. If the user reloads the page, all history is lost.
 
-####User journey
+#### User journey
 The user opens their browser and enters the URL you provided. It arrives in front of a page containing the following elements:
 
 - header: logo and catchphrase
