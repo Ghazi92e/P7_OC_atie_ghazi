@@ -10,10 +10,12 @@ api = Api()
 
 @app.route('/')
 def index():
+    """Initialise the base templates(endpoints)"""
     return render_template('index.html')
 
 
 def filterdata(data_user):
+    """Used to parse the address send by the user"""
     filter_data = []
     for data in data_user.split():
         if data not in STOP_WORDS:
@@ -23,6 +25,7 @@ def filterdata(data_user):
 
 @app.route('/ajaxtest', methods=['POST'])
 def ajaxtest():
+    """Used to display address send by user(AJAX) and the address description"""
     wikipageid = None
     data = request.form['address']
     data_parse = filterdata(data)

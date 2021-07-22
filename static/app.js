@@ -1,4 +1,5 @@
 $(document).ready(function(ajax) {
+     // Request AJAX to get address map from back end
      $('form').on('submit', function(event) {
         oneLoop();
        $.ajax({
@@ -21,6 +22,7 @@ $(document).ready(function(ajax) {
                     wikiresponse(data.wikidata);
             }, 2000);
                 console.log(wikiapi);
+                // Display a google maps map from a defined address
           (function (geocode){
             let mapElement = 'map';
             let address = dataApi;

@@ -27,24 +27,28 @@ data.insertAdjacentHTML("beforeend", "<br>" + "<img src={{ url_for('static', fil
 };
 
 function bot(data) {
+    // Display bot dialog with the address map
     var p = document.getElementById("dialog");
     p.insertAdjacentHTML("beforeend", "<br>" + "<img src={{ url_for('static', filename='bot-logo-50.png')}} />" + "Bien sûr mon poussin ! La voici: " + data);
 };
 
 function wikiresponse(data) {
+    // Display bot dialog with the address description(API Media Wiki)
     var p = document.getElementById("dialog");
     p.insertAdjacentHTML("beforeend", "<br>" + "<img src={{ url_for('static', filename='bot-logo-50.png')}} />"+ "Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? " + data);
 };
 
 const rotate = (image, degrees) => {
-  image.style.transform = `rotate(${+degrees}deg)`;
+    // Get bot image for rotate
+    image.style.transform = `rotate(${+degrees}deg)`;
 }
 const img = document.getElementById('img-bot');
 
 const oneLoop = () => {
-  setTimeout(() => rotate(img, 90), 1000);
-  setTimeout(() => rotate(img, 180), 2000);
-  setTimeout(() => rotate(img, 360), 3000);
+    // Rotate bot image
+    setTimeout(() => rotate(img, 90), 1000);
+    setTimeout(() => rotate(img, 180), 2000);
+    setTimeout(() => rotate(img, 360), 3000);
 }
 </script>
 {% endblock main %}
