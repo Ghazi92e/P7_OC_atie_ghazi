@@ -20,6 +20,7 @@
 </main>
 <script>
 function getdataform() {
+ // Get user data form and display it into the dialog
 var h = document.getElementById("address").value;
 var data = document.getElementById("dialog");
 data.insertAdjacentHTML("beforeend", "<br>" + "<img src={{ url_for('static', filename='person-logo-50.png')}} />" + h);
