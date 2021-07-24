@@ -40,12 +40,16 @@ def test_api(monkeypatch):
 
     monkeypatch.setattr(requests, "get", mock_get_mediawiki)
     res = api.wikiapi("https://fakeurlmediawiki")
-    assert res == "Le quai de la Charente est un quai situé le long du canal Saint-Denis, à Paris, " \
+    assert res == "Le quai de la Charente est un quai situé " \
+                  "le long du canal Saint-Denis, à Paris, " \
                   "dans le 19e arrondissement."
 
 
 def test_filterdata():
     """Test filterdata method"""
     assert pars.filterdata("adresse de paris") == ["paris"]
-    assert pars.filterdata("Quelle est l'adresse de OpenClassrooms ?") == ["OpenClassrooms"]
-    assert pars.filterdata("Salut GrandPy ! Est-ce que tu connais l'adresse de OpenClassrooms ?") == ["OpenClassrooms"]
+    assert pars.filterdata("Quelle est l'adresse de OpenClassrooms ?") \
+           == ["OpenClassrooms"]
+    assert pars.filterdata("Salut GrandPy ! Est-ce que tu connais "
+                           "l'adresse de OpenClassrooms ?") \
+           == ["OpenClassrooms"]
