@@ -31,3 +31,26 @@ class Api:
             for datageo in data:
                 testdata = datageo['results'][0]['address_components'][1]['long_name']
                 return testdata
+
+    def wikiapi(self, wikiaddress):
+        wikipageid = None
+        datawiki = []
+        MEDIA_WIKI_API = "http://fr.wikipedia.org/w/api.php"
+        params = {
+            "format": "json",
+            "action": "query",
+            "prop": "extracts",
+            "explaintext": "",
+            "exintro": "",
+            "titles": f'{wikiaddress}'
+        }
+        data = requests.get(MEDIA_WIKI_API, params=params)
+        d = data.json()
+        datawiki.append(d)
+        for dw in datawiki:
+            idpage = dw['query']['pages']
+            for page_id in idpage:
+                wikipageid = page_id
+        for infodata in datawiki:
+            titleinfo = infodata['query']['pages'][wikipageid]['extract']
+            return titleinfo
