@@ -1,17 +1,12 @@
 body {
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #DCDCDC;
 }
 
 header {
     font-family: serif;
     padding-top: 20px;
-}
-main {
-    display: flex;
-    flex-direction: column;
-    background-color: #DCDCDC;
-    height: 100%;
 }
 
 form {
@@ -33,7 +28,7 @@ p {
 }
 
 #map {
-    height: 50%;
+    height: 100%;
 }
 
 #box-main {
@@ -61,4 +56,3 @@ footer {
    color: white;
    text-align: center;
 }
-

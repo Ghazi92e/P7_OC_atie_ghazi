@@ -24,9 +24,9 @@ $(document).ready(function(ajax) {
                 console.log(wikiapi);
                 // Display a google maps map from a defined address
           (function (geocode){
-            let mapElement = 'map';
-            let address = dataApi;
-            geocoder = new google.maps.Geocoder();
+           let mapElement = document.getElementById('map');
+           let address = dataApi;
+           geocoder = new google.maps.Geocoder();
            geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
               var mapOptions = {
@@ -34,11 +34,12 @@ $(document).ready(function(ajax) {
                   center: results[0].geometry.location,
                   disableDefaultUI: true
               };
-              var map = new google.maps.Map(document.getElementById(mapElement), mapOptions);
+              var map = new google.maps.Map(mapElement, mapOptions);
               var marker = new google.maps.Marker({
                   map: map,
                   position: results[0].geometry.location
               });
+
             } else {
                 alert("Geocode was not successful for the following reason: " + status);
             }
