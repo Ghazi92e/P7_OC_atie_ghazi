@@ -58,3 +58,4 @@ def test_filterdata():
                            "l'adresse de OpenClassrooms ?") \
            == ["OpenClassrooms"]
     assert pars.filterdata("Quelle est l'adresse du futuroscope ?") == ["futuroscope"]
+    assert pars.filterdata("Quelle est l'adresse de Disney ?") == ["Disney"]
