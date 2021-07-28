@@ -6,15 +6,14 @@ app.config.from_pyfile('settings.py')
 
 
 class Api:
-    @staticmethod
-    def geocode(address_maps):
+    def geocode(self, address_maps):
         """Request API Google Maps and return an address"""
         data = []
         GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api' \
                               '/geocode/json?address={}/' \
                               '&region=FR&key={}'.format(
-                               address_maps,
-                               app.config.get("API_GOOGLEMAPS_KEY"))
+                                address_maps,
+                                app.config.get("API_GOOGLEMAPS_KEY"))
 
         req = requests.get(GOOGLE_MAPS_API_URL)
         d = req.json()
@@ -22,16 +21,15 @@ class Api:
         for datageo in data:
             return datageo["results"][0]["formatted_address"]
 
-    @staticmethod
-    def wikigeocode(address_wiki):
+    def wikigeocode(self, address_wiki):
         """Request API Google Maps and return the name
         of the place address for API Media Wiki"""
         data = []
         GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com' \
                               '/maps/api/geocode/json?address={}' \
                               '/&region=FR&key={}'.format(
-                               address_wiki,
-                               app.config.get("API_GOOGLEMAPS_KEY"))
+                                address_wiki,
+                                app.config.get("API_GOOGLEMAPS_KEY"))
 
         req = requests.get(GOOGLE_MAPS_API_URL)
         d = req.json()
@@ -42,8 +40,7 @@ class Api:
                     datageo['results'][0]['address_components'][1]['long_name']
                 return testdata
 
-    @staticmethod
-    def wikiapi(wikiaddress):
+    def wikiapi(self, wikiaddress):
         """Request API Media Wiki for address description"""
         wikipageid = None
         datawiki = []

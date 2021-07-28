@@ -5,12 +5,10 @@ import requests
 from api.api import Api
 from parsing.parse import Parse
 
-api = Api()
-pars = Parse()
-
 
 class MockResponse:
     """Use Mock for API test"""
+
     def __init__(self, filepath):
         """Get filepath json file"""
         self.filepath = filepath
@@ -24,17 +22,17 @@ class MockResponse:
 
 def test_api(monkeypatch):
     """Test API Google Maps and Media Wiki with fake request (monkeypatch)"""
-
     def mock_get_googlamaps(*args, **kwargs):
         """Get the API Google Maps JSON structure"""
-        return MockResponse('apigooglemaps.json')
+        return MockResponse('mockdata/apigooglemaps.json')
 
     def mock_get_mediawiki(*args, **kwargs):
         """Get the API Media Wiki JSON structure"""
-        return MockResponse('apimediawiki.json')
+        return MockResponse('mockdata/apimediawiki.json')
 
     """Test API Google Maps for Media Wiki"""
     monkeypatch.setattr(requests, "get", mock_get_googlamaps)
+    api = Api()
     res = api.wikigeocode("https://fakeurl")
     assert res == "Quai de la Charente"
     """Test API Google Maps"""
@@ -51,11 +49,13 @@ def test_api(monkeypatch):
 
 def test_filterdata():
     """Test filterdata method"""
+    pars = Parse()
     assert pars.filterdata("adresse de paris") == ["paris"]
     assert pars.filterdata("Quelle est l'adresse de OpenClassrooms ?") \
            == ["OpenClassrooms"]
     assert pars.filterdata("Salut GrandPy ! Est-ce que tu connais "
                            "l'adresse de OpenClassrooms ?") \
            == ["OpenClassrooms"]
-    assert pars.filterdata("Quelle est l'adresse du futuroscope ?") == ["futuroscope"]
+    assert pars.filterdata("Quelle est l'adresse du futuroscope ?") \
+           == ["futuroscope"]
     assert pars.filterdata("Quelle est l'adresse de Disney ?") == ["Disney"]
